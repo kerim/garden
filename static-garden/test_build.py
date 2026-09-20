@@ -220,6 +220,22 @@ class PublishingTests(unittest.TestCase):
         self.assertIn('<a href="https://evil.example/x">', content)
         self.assertTrue(any('Unrecognized video source' in w for w in g.warnings))
 
+    def test_sidebar_license_note_renders_when_configured(self):
+        config = {**self.config, 'author': 'P. Kerim Friedman', 'license': 'CC BY 4.0'}
+        g = Garden(self.nodes, self.root, config)
+        html = g.shell('Home', '<p>body</p>', '/', '/site/x.css', '/site/x.js')
+        self.assertIn('href="https://creativecommons.org/licenses/by/4.0/" rel="license"', html)
+        self.assertIn('CC BY 4.0', html)
+        self.assertIn('P. Kerim Friedman', html)
+        self.assertNotIn('Always growing', html)
+        self.assertNotIn('portfolio & digital garden', html)
+        self.assertNotIn('brand-mark', html)
+        self.assertNotIn('brand-logo', html)
+
+    def test_sidebar_note_empty_without_author_or_license(self):
+        html = self.g.shell('Home', '<p>body</p>', '/', '/site/x.css', '/site/x.js')
+        self.assertNotIn('sidebar-note', html)
+
     def test_output_cannot_replace_source_or_unrelated_files(self):
         with self.assertRaises(ValueError):
             build(self.root, self.root, self.config)

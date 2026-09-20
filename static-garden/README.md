@@ -131,14 +131,14 @@ a corresponding public page body.
 
 | File | Purpose |
 | --- | --- |
-| `site.json` | Homepage, navigation, title, description, language, canonical URL |
+| `site.json` | Homepage, navigation, title, description, language, canonical URL, optional `author`/`license` (rendered as the sidebar license note; a `license` name is linked when it's a known one such as `"CC BY 4.0"`) |
 | `build.py` / `transit_reader.py` | Decode the graph, render pages, copy attachments, emit headers |
 | `garden.css` / `garden.js` | Main layout, search, legacy bookmarks |
 | `graph-layout.cjs` / `graph.js` / `graph.css` | Graph layout and browser viewer |
 | `branding/logo.svg` / `logo.png` | Canonical site identity, preserved across Logseq exports |
 | `check-staged.py` | Validate a staged export during pre-commit |
 
-Branding is copied to the hashed SVG used in the sidebar, `static/img/logo.png`,
+Branding is copied to the hashed SVG used for the favicon, `static/img/logo.png`,
 and `favicon.png` in the output. Generated pages also include canonical URLs,
 a sitemap, and a real `404.html` rather than an SPA fallback.
 
