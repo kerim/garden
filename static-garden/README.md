@@ -76,7 +76,7 @@ inside the graph. Dragging and pinch-to-zoom remain available.
 
 `site.json` controls the collection links in both the desktop sidebar and the
 mobile Explore menu. Links appear only when their targets exist in the public export.
-Set `"embed_titles": false` in `site.json` to omit the title link above page embeds (default `true`).
+Set `"embed_titles": false` in `site.json` to omit the title link above page embeds (default `true`). Set `"embed_style": "inline"` in `site.json` to render embedded pages/blocks as plain sub-blocks with no box, no title, and no bullet for the embed block itself (default `"boxed"`, the current boxed behavior; `embed_titles` only affects `"boxed"`).
 
 ## Security and attachments
 
